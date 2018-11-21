@@ -7,14 +7,14 @@ import io.pronab.factswip.network.FactsFetcher
 class Factsrepo {
     private var factsRepo: MutableLiveData<Facts>? = null
 
-      fun getFactsFromNetwork(): MutableLiveData<Facts>? {
+    fun getFactsFromNetwork(): MutableLiveData<Facts>? {
 
         factsRepo = FactsFetcher().loadFacts() //this is repo refresh ..
         return factsRepo
 
     }
 
-     fun getCacheFacts(): MutableLiveData<Facts>? {
+    fun getCacheFacts(): MutableLiveData<Facts>? {
 
         if (factsRepo == null) {
             getFactsFromNetwork()
@@ -22,7 +22,11 @@ class Factsrepo {
 
         return factsRepo; }
 
-    fun resetFacts() {factsRepo = null}
+    fun resetFacts(): MutableLiveData<Facts>? {
+        factsRepo = null
+        getFactsFromNetwork()
+        return factsRepo
+    }
 
 
 }

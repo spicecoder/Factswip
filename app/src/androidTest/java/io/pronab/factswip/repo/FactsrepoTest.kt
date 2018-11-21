@@ -1,18 +1,19 @@
 package io.pronab.factswip.repo
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.Test
+
 
 internal class FactsrepoTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     fun getFactsFromNetwork() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     fun getCacheFacts() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     fun resetFacts() {
     }
 }

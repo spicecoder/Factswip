@@ -9,36 +9,30 @@ model representing json structure
 {
 "title":"About Canada",
 "rows":[
-	{
-	"title":"Beavers",
-	"description":"Beavers are second only to humans in their ability to manipulate and change their environment. They can measure up to 1.3 metres long. A group of beavers is called a colony",
-	"imageHref":"http://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/220px-American_Beaver.jpg"
-	}]
-	}
-*/
+{
+"title":"Beavers",
+"description":"Beavers are second only to humans in their ability to manipulate and change their environment. They can measure up to 1.3 metres long. A group of beavers is called a colony",
+"imageHref":"http://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/220px-American_Beaver.jpg"
+}]
+}
+ */
 
 
-class Facts   {
+class Facts(var title: String) {
 
-    var title: String = ""
+    lateinit var rows: ArrayList<DataModel>
 
-    constructor(title: String) {
-        this.title = title
-    }
+}
 
-    lateinit var rows  : ArrayList<DataModel>
+class DataModel : Serializable {
 
-    }
+    var title: String? = null
 
-     class DataModel : Serializable {
+    var description: String? = null
 
-        var title: String? = null
-
-        var description: String? = null
-
-        var imageHref: String? = null
+    var imageHref: String? = null
 
 
-    }
+}
 
 
