@@ -18,13 +18,11 @@ model representing json structure
  */
 
 
-class Facts(var title: String) {
-
-    lateinit var rows: ArrayList<DataModel>
+class Facts(var title: String="", var rows: ArrayList<DataModel> = ArrayList<DataModel>()) {
 
 }
 
-class DataModel : Serializable {
+class DataModel() : Serializable {
 
     var title: String? = null
 

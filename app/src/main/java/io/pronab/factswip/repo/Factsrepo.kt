@@ -28,7 +28,6 @@ class Factsrepo {
         return factsRepo
     }
 
-
 }
 
 

@@ -29,7 +29,7 @@ class FactsFetcher(private var factsRepo: MutableLiveData<Facts>? = MutableLiveD
             }
 
             override fun onFailure(call: Call<Facts>, t: Throwable) {
-                this@FactsFetcher.factsRepo!!.value = Facts(Factswip.FETCH_ERROR)
+                this@FactsFetcher.factsRepo!!.value = Facts(Factswip.FETCH_ERROR, ArrayList())
 
             }
         })

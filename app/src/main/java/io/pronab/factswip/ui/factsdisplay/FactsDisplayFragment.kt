@@ -27,7 +27,7 @@ class FactsDisplayFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FactsAdapter
     private lateinit var swipeLayout: SwipeRefreshLayout
-    var facts: Facts? = null
+    var facts: Facts? = Facts("Empty", ArrayList())
 
     private lateinit var viewModel: FactsDisplayViewModel
 
@@ -35,7 +35,7 @@ class FactsDisplayFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+
         val view: View = inflater.inflate(R.layout.facts_display_fragment, container, false)
 
         this.swipeLayout = view.findViewById(R.id.factsSwipeRefresh) as SwipeRefreshLayout
@@ -61,8 +61,11 @@ class FactsDisplayFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         val decoration = DividerItemDecoration(activity?.applicationContext, VERTICAL)
         recyclerView.addItemDecoration(decoration)
-
         viewModel = ViewModelProviders.of(this).get(FactsDisplayViewModel::class.java)
+        adapter = FactsAdapter(this@FactsDisplayFragment, facts = facts)
+
+        recyclerView.adapter = adapter
+        adapter.setAdapterForChange(this.activity)
 
         makeObserve()
 
@@ -70,7 +73,7 @@ class FactsDisplayFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
 
-    fun makeObserve() {
+    private fun makeObserve() {
 
         // viewModel = ViewModelProviders.of(this).get(FactsDisplayViewModel::class.java)
         viewModel.facts?.observe(this, Observer { facts ->
@@ -82,14 +85,14 @@ class FactsDisplayFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     }
 
-    fun cascade(facts: Facts) = when {
+    private fun cascade(facts: Facts) = when {
         facts.title == "" -> {
             Factswip.what_to_show_onScreen_now = Factswip.SHOW_ERROR
-            (activity as FactsDisplayController).attachFragment()
+            (activity as FactsDisplayController).factpresenter.attachFragment()
         }
         facts.title == Factswip.FETCH_ERROR -> {
             Factswip.what_to_show_onScreen_now = Factswip.SHOW_ERROR
-            (activity as FactsDisplayController).attachFragment()
+            (activity as FactsDisplayController).factpresenter.attachFragment()
         }
         else -> {
             adapter = FactsAdapter(this@FactsDisplayFragment, facts = facts)
