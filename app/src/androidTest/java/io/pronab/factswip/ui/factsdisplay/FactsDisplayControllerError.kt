@@ -50,10 +50,10 @@ class FactsDisplayControllerError {
 
         val textView = onView(
             allOf(
-                withId(R.id.message), withText("Facts Eror Fragment"),
+                withId(R.id.message), withText("Facts Access Error"),
                 childAtPosition(
                     allOf(
-                        withId(R.id.factsdisplay),
+                        withId(R.id.factsError),
                         childAtPosition(
                             withId(R.id.container),
                             0

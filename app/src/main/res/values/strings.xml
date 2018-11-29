@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">factswip</string>
-    <string name="facts_access_eror">Facts Access Eror</string>
+    <string name="facts_access_eror">Facts Access Error</string>
 </resources>
